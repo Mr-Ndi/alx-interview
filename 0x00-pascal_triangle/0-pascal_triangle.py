@@ -1,3 +1,13 @@
+#!/bin/python3
+
+"""
+A function to make up apascal triangle.
+
+"""
+# Description
+# n: this is the number of row that make up our triangle
+
+
 def pascal_triangle(n):
     if n <= 0:
         return []
