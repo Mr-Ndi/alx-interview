@@ -1,22 +1,26 @@
-#!/bin/python3
+#!/usr/bin/python3
 
 """
 A function to make up apascal triangle.
-
-"""
-# Description
-# n: this is the number of row that make up our triangle
+# """
 
 
 def pascal_triangle(n):
+    """
+    Description:
+    n: this is the number of row that make up our triangle.
+    in case n is less then 0 empty [triangle] list is returned.
+    otherwise pascal_triangle.
+
+    """
     if n <= 0:
         return []
 
-    triangle = [[1]]
-    for i in range(1, n):
-        row = [1]
-        for j in range(1, i):
-            row.append(triangle[i-1][j-1] + triangle[i-1][j])
-        row.append(1)
-        triangle.append(row)
-    return triangle
+    result = [[1]]
+    for elem in range(1, n):
+        row_list = [1]
+        for ele in range(1, elem):
+            row_list.append(result[elem-1][ele-1] + result[elem-1][ele])
+        row_list.append(1)
+        result.append(row_list)
+    return result
