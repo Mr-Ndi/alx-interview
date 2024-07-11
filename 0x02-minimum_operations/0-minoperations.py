@@ -23,5 +23,5 @@ def minOperations(n: int) -> int:
     while divisor * divisor <= n:
         if n % divisor == 0:
             return divisor + minOperations(n // divisor)
-        divisor += 1  
+        divisor += 1
     return n
