@@ -3,14 +3,26 @@ import sys
 from collections import defaultdict
 
 
-def print_stats(total_size, status_codes):
+def print_stats(total_size: int, status_codes: dict) -> None:
+    """Prints the total file size and the count of each status code.
+    Args:
+        total_size (int): The total size of files processed.
+        status_codes (dict): A dictionary with status codes as keys and
+        their counts as values.
+    """
     print(f"File size: {total_size}")
     for status_code in sorted(status_codes):
         if status_codes[status_code]:
             print(f"{status_code}: {status_codes[status_code]}")
 
 
-def main():
+def main() -> None:
+    """Main function to read log lines from stdin, compute metrics,
+    and print statistics.
+    Reads lines from standard input, processes them to extract file sizes
+    and status codes,
+    and prints the statistics every 10 lines or upon a keyboard interruption.
+    """
     total_size = 0
     status_codes = defaultdict(int)
     line_count = 0
