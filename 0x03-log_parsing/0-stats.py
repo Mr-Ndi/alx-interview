@@ -1,45 +1,39 @@
 #!/usr/bin/python3
 import sys
-import re
+from collections import defaultdict
 
 
-def print_statistics(total_size, status_codes):
-    print("File size:", total_size)
-    for code in sorted(status_codes.keys()):
-        print("{}: {}".format(code, status_codes[code]))
-
-
-def parse_line(line, total_size, status_codes):
-    f = (
-        r'(\d+\.\d+\.\d+\.\d+) - \[(.*?)\] '
-        r'"GET /projects/260 HTTP/1.1" (\d+) (\d+)'
-        )
-    m = re.match(f, line)
-    if m:
-        file_size = int(m.group(4))
-        status_code = m.group(3)
-        total_size += file_size
-        status_codes[status_code] = status_codes.get(status_code, 0) + 1
-        return total_size, status_codes
-    else:
-        return total_size, status_codes
+def print_stats(total_size, status_codes):
+    print(f"File size: {total_size}")
+    for status_code in sorted(status_codes):
+        if status_codes[status_code]:
+            print(f"{status_code}: {status_codes[status_code]}")
 
 
 def main():
     total_size = 0
-    status_codes = {}
+    status_codes = defaultdict(int)
     line_count = 0
 
     try:
         for line in sys.stdin:
             line_count += 1
-            total_size, status_codes = parse_line(line.strip(),
-                                                  total_size, status_codes)
+            parts = line.strip().split()
+            if len(parts) != 10 or parts[5][1:4] != "GET":
+                continue
+
+            file_size = int(parts[-1])
+            total_size += file_size
+
+            status_code = int(parts[6])
+            status_codes[status_code] += 1
+
             if line_count % 10 == 0:
-                print_statistics(total_size, status_codes)
+                print_stats(total_size, status_codes)
+
     except KeyboardInterrupt:
-        print_statistics(total_size, status_codes)
-        sys.exit(0)
+        print_stats(total_size, status_codes)
+        raise
 
 
 if __name__ == "__main__":
