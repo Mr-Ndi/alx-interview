@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    importing available modules in order to 
+    importing available modules in order to
     achive the seted tasks
 """
 import sys
