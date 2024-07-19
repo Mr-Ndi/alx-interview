@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+    importing available modules in order to 
+    achive the seted tasks
+"""
 import sys
 from collections import defaultdict
 
