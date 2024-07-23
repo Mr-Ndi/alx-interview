@@ -11,10 +11,9 @@
     to handle the 8 least significant bits of each integer
 """
 
-from typing import List
 
+def validUTF8(data):
 
-def validUTF8(data: List[int]) -> bool:
     """
         In this function we will:
             - Determine the number of bytes in the current UTF-8 character.
