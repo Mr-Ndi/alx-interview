@@ -19,35 +19,35 @@ The primary goal of this repository is to provide a comprehensive resource for i
 
 The directory is organized as follows:
 ..
-├── 0x00-pascal_triangle
+## 0x00-pascal_triangle
 │   ├── 0-main.py
 │   ├── 0-pascal_triangle.py
 │   ├── README.md
 │   └── __pycache__
 │       └── 0-pascal_triangle.cpython-311.pyc
-├── 0x01-lockboxes
+## 0x01-lockboxes
 │   ├── 0-lockboxes.py
 │   ├── 0-main.py
 │   ├── README.md
 │   └── __pycache__
 │       └── 0-lockboxes.cpython-311.pyc
-├── 0x02-minimum_operations
+## 0x02-minimum_operations
 │   ├── 0-main.py
 │   ├── 0-minoperations.py
 │   └── __pycache__
 │       └── 0-minoperations.cpython-311.pyc
-├── 0x03-log_parsing
+## 0x03-log_parsing
 │   ├── 0-generator.py
 │   ├── 0-stats.py
 │   ├── DOC_DETECTOR.sql
 │   └── README.md
-├── 0x04-utf8_validation
+## 0x04-utf8_validation
 │   ├── 0-main.py
 │   ├── 0-validate_utf8.py
 │   ├── README.md
 │   └── __pycache__
 │       └── 0-validate_utf8.cpython-311.pyc
-└── README.md
+## README.md
 
 10 directories, 20 files
 
