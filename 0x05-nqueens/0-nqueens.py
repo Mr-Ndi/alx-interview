@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 
+
 def is_safe(board, row, col):
     """ Check if a queen can be placed on board[row][col] """
     for i in range(col):
@@ -16,6 +17,7 @@ def is_safe(board, row, col):
             return False
 
     return True
+
 
 def solve_nqueens_util(board, col, solutions):
     """ Solve the N Queens problem using backtracking """
@@ -34,12 +36,14 @@ def solve_nqueens_util(board, col, solutions):
             solve_nqueens_util(board, col + 1, solutions)
             board[i][col] = 0
 
+
 def solve_nqueens(N):
     """ Main function to solve the N Queens problem """
     board = [[0 for _ in range(N)] for _ in range(N)]
     solutions = []
     solve_nqueens_util(board, 0, solutions)
     return solutions
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
