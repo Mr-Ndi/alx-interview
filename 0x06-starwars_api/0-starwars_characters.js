@@ -1,36 +1,40 @@
+#!/usr/bin/node
+/*
+Star Wars Characters
+*/
+
+const arg1 = process.argv[2];
 const request = require('request');
 
-if (process.argv.length < 3) {
-  console.error('Usage: node script.js <movie_id>');
-  process.exit(1);
-}
+async function makeRequest (url) {
+  const options = {
+    url,
+    method: 'GET',
+    json: true
+  };
 
-const movieId = process.argv[2];
-const apiUrl = `https://swapi.dev/api/films/${movieId}/`;
-
-request(apiUrl, (error, response, body) => {
-  if (error) {
-    console.error('Error:', error);
-    return;
-  }
-
-  if (response.statusCode !== 200) {
-    console.error('Error:', response.statusCode);
-    return;
-  }
-
-  const movie = JSON.parse(body);
-  const characterUrls = movie.characters;
-
-  characterUrls.forEach((characterUrl) => {
-    request(characterUrl, (err, res, charBody) => {
-      if (err) {
-        console.error('Error:', err);
-        return;
+  return new Promise((resolve, reject) => {
+    request(options, (error, response, body) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(body);
       }
-
-      const character = JSON.parse(charBody);
-      console.log(character.name);
     });
   });
-});
+}
+
+async function getData (url) {
+  try {
+    const body = await makeRequest(url);
+    const characters = body.characters;
+    for (const peopleUrl of characters) {
+      const character = await makeRequest(peopleUrl);
+      console.log(character.name);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+const url = `https://swapi-api.alx-tools.com/api/films/${arg1}`;
+getData(url);
