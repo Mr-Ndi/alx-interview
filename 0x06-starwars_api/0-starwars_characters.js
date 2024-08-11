@@ -1,7 +1,7 @@
 #!/usr/bin/node
 const request = require('request');
 
-async function makeRequest(url) {
+async function makeRequest (url) {
   return new Promise((resolve, reject) => {
     request(url, { json: true }, (error, response, body) => {
       if (error) {
@@ -12,7 +12,7 @@ async function makeRequest(url) {
   });
 }
 
-async function getStarWarsCharacters(movieId) {
+async function getStarWarsCharacters (movieId) {
   try {
     const filmUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
     const filmData = await makeRequest(filmUrl);
