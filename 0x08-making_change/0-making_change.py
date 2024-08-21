@@ -18,9 +18,9 @@ def makeChange(coins, total):
 
     # Iterate over each coin
     for coin in coins:
-        # Update the dp array for each amount from coin to total
+        # Update the mincoin array for each amount from coin to total
         for amount in range(coin, total + 1):
-            mincoin[amount] = min(dp[amount], dp[amount - coin] + 1)
+            mincoin[amount] = min(mincoin[amount], mincoin[amount - coin] + 1)
 
-    # If dp[total] is still infinity, it means total cannot be met
-    return dp[total] if dp[total] != float('inf') else -1
+    # If mincoin[total] is still infinity, it means total cannot be met
+    return mincoin[total] if mincoin[total] != float('inf') else -1
