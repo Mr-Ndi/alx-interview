@@ -7,33 +7,36 @@ basing on the number of prime numbers in a list of integers.
 
 def isWinner(x, nums):
     """
-    Determines the winner of the game based on the number of prime numbers
-    in a list of integers.
+    where x is the number of rounds and nums is an array of n
+    Return: name of the player that won the most rounds
+    If the winner cannot be determined, return None
+    You can assume n and x will not be larger than 10000
+    You cannot import any packages in this task
 
-    Arguments:
-    x (int): The number of rounds in the game.
-    nums (list): A list of integers.
-
-    Returns:
-    str: The name of the player that won the most rounds.
     """
     def is_prime(n):
-        """
-        Determines if a number is a prime number.
-
-        Arguments:
-        n (int): The number to check.
-
-        Returns:
-        bool: True if the number is a prime number, False otherwise.
-        """
-        if n < 2:
+        """Check if a number is prime"""
+        if n <= 1:
             return False
-        for i in range(2, int(n ** 0.5) + 1):
-            if n % i == 0:
+        if n <= 3:
+            return True
+        if n % 2 == 0 or n % 3 == 0:
+            return False
+        i = 5
+        while i * i <= n:
+            if n % i == 0 or n % (i + 2) == 0:
                 return False
+            i += 6
         return True
 
-    if x % 2 == 0:
+    def prime_count(n):
+        """Count the number of prime numbers"""
+        count = 0
+        for i in range(1, n + 1):
+            if is_prime(i):
+                count += 1
+        return count
+
+    if prime_count(max(nums)) * 2 > sum(nums):
         return "Maria"
     return "Ben"
